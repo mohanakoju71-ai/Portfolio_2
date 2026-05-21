@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Mohan | CSE Portfolio</title>
+    <meta name="description" content="Professional web development portfolio of Mohan, a 3rd year CSE student at NRI University. Featuring FAKERO and CODEGNAN.">
+    <meta name="keywords" content="Mohan, NRI University, FAKERO, CODEGNAN, Computer Science, Web Developer, Dark Theme Portfolio">
+    <meta name="author" content="Mohan">
+
+    <style>
+        /* ==========================================
+           1. FONTS & PRODUCTION DARK-FIRST THEME
+           ========================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+        :root {
+            /* Primary Deep Dark Mode Theme Defaults */
+            --bg-body: #0f111a;        /* Rich dark canvas */
+            --bg-card: #161925;        /* Deep slate for elements */
+            --text-main: #e2e8f0;      /* Clear, bright text */
+            --text-muted: #94a3b8;     /* Muted slate for descriptions */
+            --border-ui: #24293e;      /* Subtle dark borders */
+            --outline-focus: #bb9af3;  /* High-contrast purple focus */
+            
+            /* Dark-Pastel Component Colors */
+            --pastel-purple: #251e3e;  /* Deep dark lavender */
+            --pastel-blue: #14283b;    /* Deep ocean blue */
+            --pastel-pink: #361d2e;    /* Deep muted rose */
+            --pastel-yellow: #2d2a1e;  /* Dark gold accent */
+            
+            /* Brand Elements */
+            --accent-brand: #bb9af3;   /* Pastel violet primary */
+            --accent-hover: #9d7cd8;
+            --icon-color: #a9b1d6;
+        }
+
+        /* Light Mode Complement Switch Override */
+        [data-theme="light"] {
+            --bg-body: #f7f9fc;
+            --bg-card: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #5a6578;
+            --border-ui: #e2e8f0;
+            --outline-focus: #6b46c1;
+            
+            --pastel-purple: #f3ebff;
+            --pastel-pink: #ffe9f3;
+            --pastel-blue: #e6f4fe;
+            --pastel-yellow: #fff9db;
+            
+            --accent-brand: #6b46c1;
+            --accent-hover: #553c9a;
+            --icon-color: #4a5568;
+        }
+
+        /* Reset Mechanics */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 16px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        :focus {
+            outline: 3px solid var(--outline-focus);
+            outline-offset: 3px;
+        }
+
+        /* ==========================================
+           2. GRID & FLEXBOX ARCHITECTURE
+           ========================================== */
+        .app-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header View Panel */
+        header {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-ui);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+
+        .theme-toggle-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: var(--pastel-yellow);
+            border: 2px solid var(--border-ui);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-info {
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-brand);
+            margin-bottom: 4px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Systems via Flexbox */
+        nav {
+            width: 100%;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: var(--bg-body);
+            border: 2px solid var(--border-ui);
+            border-radius: 14px;
+        }
+
+        nav a:hover {
+            background-color: var(--pastel-purple);
+            border-color: var(--accent-brand);
+            color: var(--accent-brand);
+        }
+
+        /* Content Landmark Regions */
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        section {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-ui);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-header-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #about .section-icon { background-color: var(--pastel-purple); }
+        #projects .section-icon { background-color: var(--pastel-blue); }
+        #contact .section-icon { background-color: var(--pastel-pink); }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Project Showcase Layout Component */
+        .project-deck {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        article {
+            background-color: var(--bg-body);
+            border: 2px solid var(--border-ui);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        article h3 {
+            font-size: 1.25rem;
+            color: var(--accent-brand);
+        }
+
+        article p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        article a {
+            align-self: flex-start;
+            color: var(--text-main);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: var(--pastel-purple);
+            border: 2px solid var(--border-ui);
+            border-radius: 10px;
+        }
+
+        article a:hover {
+            border-color: var(--accent-brand);
+        }
+
+        /* Clean Functional Form Fields */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            border: 2px solid var(--border-ui);
+            border-radius: 14px;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-brand);
+            background-color: var(--bg-card);
+        }
+
+        button[type="submit"] {
+            align-self: flex-start;
+            background-color: var(--pastel-pink);
+            color: var(--text-main);
+            border: 2px solid var(--border-ui);
+            padding: 12px 24px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            border-color: var(--accent-brand);
+            background-color: var(--bg-card);
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-ui);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           3. TABLET & DESKTOP SYSTEM BREAKPOINTS
+           ========================================== */
+        @media (min-width: 768px) {
+            body { padding: 40px 24px; }
+            .app-container { gap: 24px; }
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 32px;
+            }
+            .header-info { text-align: left; }
+            nav { width: auto; }
+            .project-deck { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <div class="app-container">
+
+        <header role="banner">
+            <button class="theme-toggle-btn" id="theme-switcher" aria-label="Toggle light/dark layout scheme" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--icon-color);"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line></svg>
+            </button>
+
+            <div class="header-info">
+                <h1>Mohan</h1>
+                <p>3rd Year Computer Science & Engineering • NRI University</p>
+            </div>
+            
+            <nav aria-label="Primary System Navigation Link Map">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            
+            <section id="about" aria-labelledby="about-heading">
+                <div class="section-header-group">
+                    <div class="section-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-brand);"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line><line x1="12" y1="17" x2="12" y2="20"></line></svg>
+                    </div>
+                    <h2 id="about-heading">About Me</h2>
+                </div>
+                <p>
+                    Hello! My name is <strong>Mohan</strong>, and I am currently in my <strong>3rd year of Computer Science & Engineering (CSE) at NRI University</strong>. As an aspiring software engineer, I am deeply passionate about expanding my knowledge in advanced domains like Web Development, Artificial Intelligence, and optimized system architectures.
+                </p>
+                <p>
+                    Through my academic coursework and practical challenges, I focus heavily on bridging backend application logic with clean, semantic, and highly accessible user interfaces. I enjoy solving algorithmic challenges and engineering scalable, real-world solutions.
+                </p>
+            </section>
+
+            <section id="projects" aria-labelledby="projects-heading">
+                <div class="section-header-group">
+                    <div class="section-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-brand);"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h2 id="projects-heading">Featured Projects</h2>
+                </div>
+                
+                <div class="project-deck">
+                    <article style="background-color: var(--pastel-blue);">
+                        <h3>FAKERO</h3>
+                        <p>A smart fake news detector website that checks news against multiple trusted sources like The Times of India and major news channels to tell whether the news is true, fake, or suspicious.</p>
+                        <a href="https://github.com/mohanakoju71-ai/FAKERO.git" target="_blank" rel="noopener noreferrer" aria-label="View FAKERO project repository on GitHub">Explore Source</a>
+                    </article>
+
+                    <article style="background-color: var(--pastel-purple);">
+                        <h3>CODEGNAN</h3>
+                        <p>Built under the guidance of the Codegnan Community Hub during a front-end workshop. This platform represents the community, highlighting its learning environments, interactive workshops, and developer growth.</p>
+                        <a href="https://github.com/mohanakoju71-ai/CODEGNAN.git" target="_blank" rel="noopener noreferrer" aria-label="View CODEGNAN project repository on GitHub">Explore Source</a>
+                    </article>
+                </div>
+            </section>
+
+            <section id="contact" aria-labelledby="contact-heading">
+                <div class="section-header-group">
+                    <div class="section-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-brand);"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 1 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h2 id="contact-heading">Get In Touch</h2>
+                </div>
+                
+                <form aria-label="Contact submission interface" method="GET">
+                    <div class="form-group">
+                        <label id="name-label" for="user-name">Full Name</label>
+                        <input type="text" id="user-name" name="name" required autocomplete="name" aria-labelledby="name-label">
+                    </div>
+
+                    <div class="form-group">
+                        <label id="email-label" for="user-email">Email Address</label>
+                        <input type="email" id="user-email" name="email" required autocomplete="email" aria-labelledby="email-label">
+                    </div>
+
+                    <div class="form-group">
+                        <label id="message-label" for="user-message">Your Message</label>
+                        <textarea id="user-message" name="message" rows="4" required aria-labelledby="message-label"></textarea>
+                    </div>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+
+        </main>
+
+        <footer role="contentinfo">
+            <p>&copy; 2026 Mohan. Portfolio Platform Core.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-switcher');
+        
+        // Dark theme initialized first by script config
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
